@@ -11,11 +11,11 @@
 body {
     background-color: hsl(224, 32%, 12%);
     background-image: conic-gradient(
-        from 0deg at 50% 50%,
-        blue,
-        purple,
-        purple,
-        blue
+            from 0deg at 50% 50%,
+            blue,
+            purple,
+            purple,
+            blue
     );
     background-blend-mode: multiply;
     display: grid;
@@ -39,11 +39,7 @@ pre {
     border-radius: 1rem;
 
     transform-style: preserve-3d;
-    transform:
-            perspective(5000px)
-            rotateY(var(--rotateY))
-            rotateX(var(--rotateX))
-            ;
+    transform: perspective(5000px) rotateY(var(--rotateY)) rotateX(var(--rotateX));
 
 
 }
@@ -85,10 +81,132 @@ pre::before {
 
 pre::after {
     inset: -1rem;
-    background:
-        linear-gradient(-45deg, red, blue);
+    background: linear-gradient(-45deg, red, blue);
     translate: 0 0 -50px;
 }
+
+
+/* CSS ONLY SOLUTION */
+
+.pre-container {
+    position: relative;
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+}
+
+.pre-container > div {
+    z-index: 10;
+    position: absolute;
+    /*outline: 5px solid rebeccapurple;*/
+}
+
+.pre-container > div:nth-child(1) {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    inset: 0;
+}
+
+.pre-container > div:nth-child(2) {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    inset: 0;
+}
+
+.pre-container > div:nth-child(3) {
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+    inset: 0;
+}
+
+.pre-container > div:nth-child(4) {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    inset: 0;
+}
+
+.pre-container > div:nth-child(5) {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    inset: 0;
+}
+
+.pre-container > div:nth-child(6) {
+    grid-row: 3 / 4;
+    grid-column: 2 / 3;
+    inset: 0;
+}
+
+.pre-container > div:nth-child(7) {
+    grid-row: 1 / 2;
+    grid-column: 3 / 4;
+    inset: 0;
+}
+
+.pre-container > div:nth-child(8) {
+    grid-row: 2 / 3;
+    grid-column: 3 / 4;
+    inset: 0;
+}
+
+.pre-container > div:nth-child(9) {
+    grid-row: 3 / 4;
+    grid-column: 3 / 4;
+    inset: 0;
+}
+
+pre {
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    transition: transform 250ms ease;
+}
+
+.pre-container > div:nth-child(1):hover ~ pre {
+    --rotateX: 25deg;
+    --rotateY: -25deg;
+}
+
+.pre-container > div:nth-child(2):hover ~ pre {
+    --rotateX: 0deg;
+    --rotateY: -25deg;
+}
+
+.pre-container > div:nth-child(3):hover ~ pre {
+    --rotateX: -25deg;
+    --rotateY: -25deg;
+}
+
+.pre-container > div:nth-child(4):hover ~ pre {
+    --rotateX: 25deg;
+    --rotateY: 0deg;
+}
+
+.pre-container > div:nth-child(5):hover ~ pre {
+    --rotateX: 0deg;
+    --rotateY: 0deg;
+}
+
+.pre-container > div:nth-child(6):hover ~ pre {
+    --rotateX: -25deg;
+    --rotateY: 0deg;
+}
+
+.pre-container > div:nth-child(7):hover ~ pre {
+    --rotateX: 25deg;
+    --rotateY: 25deg;
+}
+
+.pre-container > div:nth-child(8):hover ~ pre {
+    --rotateX: 0deg;
+    --rotateY: 25deg;
+}
+
+.pre-container > div:nth-child(9):hover ~ pre {
+    --rotateX: -25deg;
+    --rotateY: 25deg;
+}
+
+
+
 
 
 
